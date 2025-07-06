@@ -9,7 +9,7 @@ datos["quintil"] = pd.qcut(datos["ingreso_per_capita"], q=5, labels=["Q1", "Q2",
 
 quintil_superior = datos[datos["quintil"] == "Q5"]
 print("\nHogares en el quintil superior")
-print(f"Cantidad de hogares ricos: {len(quintil_superior)}")
+print(f"{len(quintil_superior)}")
 
 observadas = quintil_superior["departamento"].value_counts().sort_index()
 print("\nFrecuencia observada por departamento")
@@ -29,12 +29,11 @@ print("\nEstadístico chi-cuadrado calculado")
 print(f"χ² = {estadistico_chi2:.2f}")
 
 valor_critico = chi2.ppf(0.95, df=cantidad_departamentos - 1)
-print("\nValor crítico con α = 0.05")
-print(f"Grados de libertad: {cantidad_departamentos - 1}")
-print(f"Valor crítico: {valor_critico:.2f}")
+print(f"\nGrados de libertad: {cantidad_departamentos - 1}")
+print(f"Valor crítico con α = 0.05: {valor_critico:.2f}")
 
 print("\nConclusión del test:")
 if estadistico_chi2 > valor_critico:
-    print("Se rechaza la hipótesis nula: la distribución NO es uniforme entre departamentos.")
+    print("Se rechaza la hipótesis nula: la distribución NO es uniforme entre departamentos.\n")
 else:
-    print(" No se rechaza la hipótesis nula: la distribución podría ser uniforme.")
+    print(" No se rechaza la hipótesis nula: la distribución podría ser uniforme.\n")
